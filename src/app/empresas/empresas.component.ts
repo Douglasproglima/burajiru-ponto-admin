@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Empresa } from './shared/empresa.model';
+
 //consta NOME = Array<TipoDeDados> = []; ou TipoDados[] = [];
 const EMPRESAS: Array<any> = [
   { id: 1, razao_social: 'Isin', empreteira: 'Suri-Emu' },
@@ -19,6 +21,7 @@ const EMPRESAS: Array<any> = [
 export class EmpresasComponent implements OnInit {
 
   public empresas;
+  public selectedEmpresa: Empresa;
 
   public constructor() {
 
@@ -27,5 +30,9 @@ export class EmpresasComponent implements OnInit {
   //Método onde será carregado as informações da API
   public ngOnInit() {
     this.empresas = EMPRESAS;
+  }
+
+  public onSelect(empresa: Empresa): void{
+    this.selectedEmpresa = empresa;
   }
 }

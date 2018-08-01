@@ -35,9 +35,16 @@
                   <td>{{empresa.razao_social}}</td>
                   <td>{{empresa.empreteira}}</td>
                   <td>
-                    <button class="btn btn-info">Detalhes</button>
-                    <button class="btn btn-primary">Editar</button>
-                    <button class="btn btn-danger">Excluir</button>
+                    <button class="btn btn-info" data-toggle="modal"
+                            data-target="#empresaDetalhesModal" (click)="onSelect(empresa)">
+                      <span class="fa fa-info-circle"></span>
+                    </button>
+                    <button class="btn btn-warning">
+                      <span class="fa fa-pencil"></span>
+                    </button>
+                    <button class="btn btn-danger">
+                      <span class="fa fa-trash"></span>
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -62,3 +69,48 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<div *ngIf="selectedEmpresa">
+  <p>
+    <strong>Código: </strong>{{ selectedEmpresa.id }}
+  </p>
+
+  <p>
+    <strong>Empresa: </strong>{{selectedEmpresa.razao_social}}
+  </p>
+
+  <p>
+    <strong>Empreitera: </strong>{{selectedEmpresa.empreteira}}
+  </p>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="empresaDetalhesModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="selectedEmpresa">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detalhes da Empresa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <strong>Código: </strong>{{ selectedEmpresa.id }}
+        </p>
+
+        <p>
+          <strong>Empresa: </strong>{{selectedEmpresa.razao_social}}
+        </p>
+
+        <p>
+          <strong>Empreitera: </strong>{{selectedEmpresa.empreteira}}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
